@@ -6,13 +6,13 @@
 
 API предоставляет следующие методы:<br>
 ***1) Получение списка справочников***<br>
-Метод: 'refbooks/[?date=\<date>]' <br>
+Метод: refbooks/[?date=\<date>] <br>
 Тип запроса HTTP: GET <br>
 ***2) Получение элементов заданного справочника***<br>
 Метод: refbooks/\<id>/elements[?version=\<version>] <br>
 Тип запроса HTTP: GET <br>
 ***3) Валидация элементов***<br>
-Метод: 'refbooks/\<id>/check_element?code=\<code>&value=\<value>[&version=\<version>]' <br>
+Метод: refbooks/\<id>/check_element?code=\<code>&value=\<value>[&version=\<version>] <br>
 Тип запроса HTTP: GET <br>
 
 ***Использованный стек:***
