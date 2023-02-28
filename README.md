@@ -1,22 +1,19 @@
 # Тестовое задание. Медицинский справочник. Реализация REST API
-
 ---
 
 ## Описание проекта
-
 В проекте реализовано API для работы со следующими объектами: справочник, версия справочника, элемент справочника. 
 
 API предоставляет следующие методы:<br>
 ***1) Получение списка справочников***<br>
-Метод: refbooks/[?date=<date>]
-Тип запроса HTTP: GET.<br>
+Метод: 'refbooks/[?date=\<date>]' <br>
+Тип запроса HTTP: GET <br>
 ***2) Получение элементов заданного справочника***<br>
-Метод: refbooks/<id>/elements[?version=<version>]
-Тип запроса HTTP: GET<br>
+Метод: refbooks/\<id>/elements[?version=\<version>] <br>
+Тип запроса HTTP: GET <br>
 ***3) Валидация элементов***<br>
-Метод: refbooks/<id>/check_element?code=<code>&value=<value>[&version=<version>]
-Тип запроса HTTP: GET<br>
-
+Метод: 'refbooks/\<id>/check_element?code=\<code>&value=\<value>[&version=\<version>]' <br>
+Тип запроса HTTP: GET <br>
 
 ***Использованный стек:***
 * Python 3.7
@@ -25,8 +22,6 @@ API предоставляет следующие методы:<br>
 * drf-yasg (Yet another Swagger generator) 1.21.5
 * Python-dotenv 0.20.0
 * В качестве базы данных используется SQLite.
-
-
 ---
 
 ## Как установить проект
