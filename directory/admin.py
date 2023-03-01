@@ -1,7 +1,9 @@
+import datetime
+
 from django.contrib import admin
 
-from .models import Refbook, Version, Element, ElementVersion
-from .forms import ElementForm
+from .models import Refbook, Version, Element
+from .forms import ElementForm, VersionForm
 
 
 class VersionInline(admin.StackedInline):
@@ -23,17 +25,16 @@ class RefbookAdmin(admin.ModelAdmin):
     inlines = [VersionInline]
 
     def get_last_version(self, obj):
-        return obj.versions.values_list('version').last()
+        date_today = datetime.datetime.now()
+        return obj.versions.values_list('version').filter(date__lte=date_today).\
+            order_by('date').last()
     get_last_version.short_description = "Текущая версия"
 
     def get_date_version(self, obj):
-        return obj.versions.values_list('date').last()
+        date_today = datetime.datetime.now()
+        return obj.versions.values_list('date').filter(date__lte=date_today).\
+            order_by('date').last()
     get_date_version.short_description = "Дата начала действия"
-
-
-class ElementVersionInline(admin.StackedInline):
-    model = ElementVersion
-    extra = 0
 
 
 @admin.register(Version)
@@ -41,11 +42,20 @@ class VersionAdmin(admin.ModelAdmin):
     list_display = ['get_code_refbook', 'refbook_id', 'version', 'date']
     list_display_links = ['get_code_refbook', 'version']
     list_filter = ['refbook_id']
-    inlines = [ElementVersionInline]
+    form = VersionForm
 
     def get_code_refbook(self, obj):
         return obj.refbook_id.code
     get_code_refbook.short_description = 'Код справочника'
+
+    def save_model(self, request, obj, form, change):
+        if not obj.pk:
+            obj = Version.objects.create(refbook_id=form.cleaned_data.get('refbook_id'),
+                                         version=form.cleaned_data.get('version'),
+                                         date=form.cleaned_data.get('date')
+                                         )
+        obj.element_set.set(form.cleaned_data.get('element'))
+        super().save_model(request, obj, form, change)
 
 
 @admin.register(Element)

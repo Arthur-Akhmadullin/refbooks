@@ -6,7 +6,7 @@ from drf_yasg.utils import swagger_auto_schema
 
 from .models import Refbook, Version, Element
 from .serializers import RefbookSerializer, ElementSerializer
-from .swg_parametres import refbook_list_api_param, elemet_list_api_param, valid_element_api_param
+from .swg_parametres import refbook_list_api_param, element_list_api_param, valid_element_api_param
 
 
 class RefbookListAPIView(ListAPIView):
@@ -23,7 +23,7 @@ class RefbookListAPIView(ListAPIView):
 
 
 class ElementListAPIView(ListAPIView):
-    @swagger_auto_schema(**elemet_list_api_param)
+    @swagger_auto_schema(**element_list_api_param)
     def get(self, request, *args, **kwargs):
         id_param = self.kwargs.get('id')
 
