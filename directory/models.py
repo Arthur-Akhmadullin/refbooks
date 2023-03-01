@@ -10,7 +10,7 @@ class Refbook(models.Model):
         return self.name
 
     class Meta:
-        # ordering = ['name']
+        ordering = ['name']
         verbose_name = 'Справочник'
         verbose_name_plural = 'Справочники'
 
