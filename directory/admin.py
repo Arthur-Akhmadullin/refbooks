@@ -18,6 +18,7 @@ class VersionInline(admin.StackedInline):
 @admin.register(Refbook)
 class RefbookAdmin(admin.ModelAdmin):
     list_display = ['id', 'code', 'name', 'get_last_version', 'get_date_version']
+    list_display_links = ['code', 'name']
     inlines = [VersionInline]
 
     def get_last_version(self, obj):
@@ -37,6 +38,8 @@ class ElementVersionInline(admin.StackedInline):
 @admin.register(Version)
 class VersionAdmin(admin.ModelAdmin):
     list_display = ['get_code_refbook', 'refbook_id', 'version', 'date']
+    list_display_links = ['get_code_refbook', 'version']
+    list_filter = ['refbook_id']
     inlines = [ElementVersionInline]
 
     def get_code_refbook(self, obj):
@@ -47,4 +50,6 @@ class VersionAdmin(admin.ModelAdmin):
 @admin.register(Element)
 class ElementAdmin(admin.ModelAdmin):
     list_display = ['id', 'code', 'value']
+    list_display_links = ['code', 'value']
+    list_filter = ['version_id', 'version_id__refbook_id']
     inlines = [ElementVersionInline]
