@@ -14,14 +14,6 @@ API предоставляет следующие методы:<br>
 ***3) Валидация элементов***<br>
 Метод: api/refbooks/\<id>/check_element?code=\<code>&value=\<value>[&version=\<version>] <br>
 Тип запроса HTTP: GET <br>
-
-***Использованный стек:***
-* Python 3.7
-* Django 3.2.17
-* Django REST framework 3.14.0
-* drf-yasg (Yet another Swagger generator) 1.21.5
-* Python-dotenv 0.20.0
-* В качестве базы данных используется SQLite.
 ---
 
 ## Как установить проект
