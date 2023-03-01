@@ -21,7 +21,7 @@ class ElementForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(ElementForm, self).__init__(*args, **kwargs)
-        if self.instance:
+        if self.instance and self.instance.pk:
             self.fields['version_id'].initial = self.instance.version_id.all()
 
     class Meta:
