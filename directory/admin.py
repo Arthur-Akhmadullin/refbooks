@@ -1,6 +1,7 @@
 from django.contrib import admin
 
 from .models import Refbook, Version, Element, ElementVersion
+from .forms import ElementForm
 
 
 class VersionInline(admin.StackedInline):
@@ -52,4 +53,4 @@ class ElementAdmin(admin.ModelAdmin):
     list_display = ['id', 'code', 'value']
     list_display_links = ['code', 'value']
     list_filter = ['version_id', 'version_id__refbook_id']
-    inlines = [ElementVersionInline]
+    form = ElementForm

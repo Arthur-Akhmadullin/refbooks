@@ -64,8 +64,8 @@ class ElementVersion(models.Model):
 
     class Meta:
         unique_together = ('version', 'element')
-        verbose_name = 'Элементы версий'
+        verbose_name = ''
         verbose_name_plural = 'Элементы версий'
 
     def __str__(self):
-        return f'Версия {self.version.version} из {self.version.refbook_id.name} '
+        return f'Версия {self.version.version} - элемент {self.element.value} '
